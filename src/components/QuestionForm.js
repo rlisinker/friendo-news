@@ -3,7 +3,7 @@ import { db } from "../firebase";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 export default function QuestionForm() {
-  const [answer, setAnswer] = useState("");
+  const [question, setQuestion] = useState("");
 
   const now = Timestamp.now();
   const jsDate = now.toDate(); // convert to regular JS Date
@@ -12,17 +12,21 @@ export default function QuestionForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await addDoc(collection(db, "questions"), {
-      answer,
+      question,
       createdAt: now,
         monthKey
     });
-    setAnswer("");
+    setQuestion("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>"Do you have a question you'd like the group to answer this month?"</h2>
-      <textarea value={answer} onChange={(e) => setAnswer(e.target.value)} />
+      <textarea
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          rows = {3}
+          />
       <button type="submit">Submit</button>
     </form>
   );
