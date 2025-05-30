@@ -30,11 +30,12 @@ export default function AnswerForm(selectedMonth = "2025-06") {
           
       <h2>Check it Out!</h2>
       <textarea value={answer} onChange={(e) => setAnswer(e.target.value)} />
-         
-      <h2>{questions.map((r, i) => (
-                <li key = (i)>{r.question}</li>
+       
+      <h2>Our Questions</h2>
+      <ul>{questions.map((r, i) => (
+                                    <li key = {i}>{r.question}</li>
                 ))}
-      </h2>
+      </ul>
       <textarea value={answer} onChange={(e) => setAnswer(e.target.value)} />
           
       <h2>Monthly Question: What brought you joy this month?</h2>
